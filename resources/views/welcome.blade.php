@@ -86,32 +86,25 @@
                     @endauth
                 </div>
             @endif
-
-            {{-- <section>
-                <div> --}}
-                    <div class="content">
-                        <div class="container-flex">
-                            {{-- <div class="row justify-content-center"> --}}
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">Form to generate URL</div>
-                                        <div class="card-body">
-                                            <form action="{{url('/short')}}"  method="POST">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label for="exampleInputUrl">Enter URL link</label>
-                                                    <input type="text" name="url" id="url" class="form-control" id="exampleInputUrl" aria-describedby="urlHelp" placeholder="Enter URL">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Generate</button>
-                                            </form>
-                                        </div>
+                <div class="content">
+                    <div class="container-flex">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">Form to generate URL</div>
+                                    <div class="card-body">
+                                        <form action="{{url('/short')}}"  method="POST">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="exampleInputUrl">Enter URL link</label>
+                                                <input type="text" name="url" id="url" class="form-control" id="exampleInputUrl" aria-describedby="urlHelp" placeholder="Enter URL">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Generate</button>
+                                        </form>
                                     </div>
                                 </div>
-                            {{-- </div> --}}
-                        </div>
+                            </div>
                     </div>
-                {{-- </div>
-            </section> --}}
+                </div>
         </div>
     </body>
 </html>

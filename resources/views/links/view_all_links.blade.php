@@ -1,10 +1,7 @@
-
-
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
-        {{-- <h1>How to create url shortener using Laravel? - ItSolutionStuff.com</h1> --}}
         <div class="card">
         <div class="card-header">
             <h2>Generated URLs</h2>
@@ -31,7 +28,6 @@
                                 <td><a href="{{ url('/short/{link}', $row->code) }}" target="_blank">{{ url('/short/{link}', $row->code) }}</a></td>
                                 <td>{{$row->url}}</td>
                                 <td>
-                                    {{-- <a href="{{url('category-edit/'.$item->id)}}" class="badge btn-primary">Update</a> --}}
                                     <a href="{{url('view_link/'.$row->id)}}" class="badge bg-success py-2 px-3 btn-success">View</a>
                                     <a href="{{url('edit_url/'.$row->id)}}" class="badge bg-warning py-2 px-3 btn-warning">Update</a>
                                     <a href="#" class="badge bg-primary py-2 px-3 btn-primary">Disable</a>

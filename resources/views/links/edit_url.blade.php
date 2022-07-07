@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Form to Update/Renerate URL</div>
                 <div class="card-body">
-                    <form method="POST" action="{{url('update_link/'.$edit_url->id)}}">
+                    <form method="POST" action="{{url('update_link',$edit_url->id)}}">
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputUrl">Re-Enter URL link</label>

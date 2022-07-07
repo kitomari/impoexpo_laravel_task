@@ -21,24 +21,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/short', function () {return view('welcome');});
+Route::get('/welcome', function () {return view('welcome');});
 Route::post('/short', 'UrlController@store');
 Route::get('/short/{link}', 'UrlController@shortLinks');
 Route::get('/home', 'UrlController@index')->name('home');
 Route::get('/view_link/{id}', 'UrlController@viewLink')->name('view_link');
 Route::get('/edit_url/{id}', 'UrlController@editLink')->name('edit_url');
-Route::post('/update_link/{id}', 'UrlController@updateUrl')->name('update_link');
+Route::post('/update_link/{id}', 'UrlController@updateUrl');
+Route::get('/delete_url/{id}', 'UrlController@destroy');
+Route::get('/disable_url/{id}', 'UrlController@disableLink');
 
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/view_all_links', 'LinksController@index')->name('view_all_links');
-// Route::get('/view_link/{id}', 'LinksController@viewLink')->name('view_link');
-// Route::get('/edit_url/{id}', 'LinksController@editLink')->name('edit_url');
-Route::post('/generate_link', 'LinksController@store')->name('generate_link');
-// Route::post('/update_link/{id}', 'LinksController@updateUrl')->name('update_link');
-// Route::get('{link}', 'LinksController@shortLink')->name('local.link');
-// Route::group([], function(){
-//     Route::get('/', 'LinksController@index')->name('index');
-//     Route::post('generate_link','LinksController@store')->name('generate_link');
-// });
+Route::get('/view_profile/{id}', 'ProfileController@index');
+Route::post('/update_profile/{id}', 'ProfileController@update');
+
 
 

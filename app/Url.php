@@ -9,6 +9,7 @@ class url extends Model
     protected $fillable = [
         'url',
         'code',
+        'expires',
         'status'
     ];
 }

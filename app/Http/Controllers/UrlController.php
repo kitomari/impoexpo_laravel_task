@@ -14,7 +14,7 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $short_links = Url::latest()->get();
+        $short_links = Url::latest()->where('status','!=', '1')->get();
         return view('home', compact('short_links'));
     }
 
@@ -24,7 +24,6 @@ class UrlController extends Controller
     }
 
     public function editLink($id){
-        // $edit_url = Links::where('id',$id)->get();
         $edit_url = Url::find($id);
         return view('links.edit_url', compact('edit_url'));
     }
@@ -51,7 +50,7 @@ class UrlController extends Controller
             $code = $this->generateUrl();
             Url::create([
              'url' => $request->url,
-                'code' => $code
+             'code' => $code
             ]);
 
             $url = Url::whereUrl($request->url)->first();
@@ -69,9 +68,6 @@ class UrlController extends Controller
 
 
     public function shortLinks($link){
-        // $url = Url::whereCode($link)->first();
-        // $url = Url::select('url')->where($link)->first();
-        // return redirect($url->url);
         $url = Url::whereCode($link)->first();
         return redirect($url->url);
     }
@@ -104,20 +100,14 @@ class UrlController extends Controller
      * @param  \App\url  $url
      * @return \Illuminate\Http\Response
      */
-    public function updateUrl(Request $request, url $url, $id)
+    public function updateUrl(Request $request, $id)
     {
         $url = Url::find($id);
-        $url = Url::whereUrl($request->url)->first();
-        if($url != null){
-            $code = $this->generateUrl();
-            Url::create([
-             'url' => $request->url,
-                'code' => $code
-            ]);
-
-            $url = Url::whereUrl($request->url)->first();
-        }
-        return view('home')->with('Success', 'Short link regenerated');;
+        // $url = Url::whereUrl($request->url)->first();
+        $url->url = $request->url;
+        $url->code = $this->generateUrl();
+        $url->save();
+        return view('links.short', compact('url'));
     }
 
     /**
@@ -126,8 +116,18 @@ class UrlController extends Controller
      * @param  \App\url  $url
      * @return \Illuminate\Http\Response
      */
-    public function destroy(url $url)
+
+    public function destroy($id){
+        $url = Url::find($id);
+        $url->delete();
+        return redirect('home');
+    }
+
+    public function disableLink($id)
     {
-        //
+        $url = Url::find($id);
+        $url->status = 1;
+        $url->update();
+        return redirect('home');
     }
 }
